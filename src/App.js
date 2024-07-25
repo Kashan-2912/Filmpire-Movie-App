@@ -15,11 +15,19 @@ const App = () => {
   }, []);
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${api_url}&s=${title}`);
-    const data = await response.json();
-
-    setMovies(data.Search);
+    try {
+      const response = await fetch(`${api_url}&s=${title}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setMovies(data.Search);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+      setMovies([]);
+    }
   };
+  
 
   return (
     <div className="app">
