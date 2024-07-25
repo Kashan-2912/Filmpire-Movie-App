@@ -10,7 +10,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { //when website opens, those movies are displyed with title in called function...
     searchMovies("Batman");
   }, []);
 
@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>MovieLand</h1>
+      <h1>Filmpire</h1>
 
       <div className="search">
         <input
@@ -40,8 +40,8 @@ const App = () => {
 
       {movies?.length > 0 ? (
         <div className="container">
-          {movies.map((movie) => (
-            <MovieCard movie={movie} />
+          {movies.map((movie, index) => (
+            <MovieCard movie={movie} key={index}/>
           ))}
         </div>
       ) : (
